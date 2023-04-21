@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fem ingrendienser - WP rest Api - Jo</title>
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <!--Font link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="index.html"><h1>Cookies</h1></a>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="menu">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/recipes.html">Recipes</a></li>
+        <li><a href="/contactus.html">Contact</a></li>
+      </ul>
+    </header>
+    <div class="breadcrumbs">
+      <h3><a href="/index.html">Back to Homepage</a></h3>
+    </div>
+    <main>
+      <div id="js-loader" class="loader"></div>
+      <div id="js-results"></div>
+    </main>
+
+    <footer>
+      <div class="s-icons">
+        <span><i class="fa-brands fa-facebook"></i></span>
+        <span><i class="fa-brands fa-instagram"></i></span>
+        <span><i class="fa-brands fa-linkedin"></i></span>
+      </div>
+    </footer>
+
+    <script src="navmenu.js"></script>
+    <!-- RECIPES API-->
+
+    <script>
+      const loader = document.querySelector("#js-loader");
+      const resultsContainer = document.querySelector("#js-results");
+      const url =
+        "https://resourceful-cattle.flywheelsites.com/wp-json/wp/v2/posts?_media/";
+
+      async function fetchPosts() {
+        try {
+          loader.style.display = "block"; // Show loader
+          const response = await fetch(url);
+          const json = await response.json();
+
+          console.log(json);
+
+          resultsContainer.innerHTML = "";
+
+          const posts = json;
+
+          for (let i = 0; i < posts.length; i++) {
+            const post = posts[i];
+
+            resultsContainer.innerHTML += `
+            <div class="card">
+              <div class="details">
+                <h1 class="title">${post.title.rendered}</h1>
+                <p class="">${post.content.rendered}</p>
+                <div class="btnContainer">
+                  <button type="submit" id="submit"><a href="contactus.html">Order yours here today</a></button>
+                </div>
+              </div>
+            </div>
+          `;
+          }
+
+          loader.style.display = "none"; // Hide loader
+        } catch (error) {
+          console.log(error);
+          loader.style.display = "none"; // Hide loader
+        }
+      }
+
+      fetchPosts();
+    </script>
+  </body>
+</html>

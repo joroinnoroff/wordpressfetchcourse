@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrot Cake - WP rest Api - Jo</title>
+    <link rel="stylesheet" href="/src/css/redvelv.css" />
+    <!--Font link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="index.html"><h1>Cookies</h1></a>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="/recipes.html">Recipes</a></li>
+        <li><a href="/contactus.html">Contact</a></li>
+      </ul>
+    </header>
+    <div class="breadcrumbs">
+      <h3><a href="/index.html">Back to Homepage</a></h3>
+    </div>
+    <main>
+      <div id="results-container">
+        <div class="loading"></div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="s-icons">
+        <span><i class="fa-brands fa-facebook"></i></span>
+        <span><i class="fa-brands fa-instagram"></i></span>
+        <span><i class="fa-brands fa-linkedin"></i></span>
+      </div>
+    </footer>
+
+    <script src="navmenu.js"></script>
+
+    <!-- RECIPES API-->
+    <script>
+      // Select the container element to display the results
+      const resultsContainer = document.querySelector("#results-container");
+
+      // Add a loading indicator to the container
+      resultsContainer.innerHTML = "<div class='loading'></div>";
+
+      // Fetch the post data from the API endpoint
+      fetch(
+        "https://resourceful-cattle.flywheelsites.com/wp-json/wp/v2/posts/7"
+      )
+        .then((response) => response.json()) // parse the response as JSON
+        .then((data) => {
+          // Remove the loading indicator
+          resultsContainer.innerHTML = "";
+
+          // Extract the title and rendered content from the response data
+          const {
+            title,
+            content: { rendered },
+          } = data;
+
+          // Create HTML elements for the title and content
+          const titleEl = document.createElement("h1");
+          const contentEl = document.createElement("p");
+
+          // Set the text content of the HTML elements
+          titleEl.textContent = title.rendered;
+          contentEl.innerHTML = rendered;
+
+          // Append the HTML elements to the results container
+          resultsContainer.appendChild(titleEl);
+          resultsContainer.appendChild(contentEl);
+        })
+        .catch((error) => {
+          // Remove the loading indicator
+          resultsContainer.innerHTML = "";
+
+          // Display an error message in the container
+          resultsContainer.innerHTML =
+            "<p>Error fetching post data: " + error + "</p>";
+        });
+    </script>
+  </body>
+</html>

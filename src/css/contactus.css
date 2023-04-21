@@ -1,0 +1,205 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+header {
+  background-color: #1b1b32;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+h1 {
+  margin: 0;
+}
+header a h1{
+  color: #fff;
+}
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 25px;
+  margin-bottom: 5px;
+  position: relative;
+  background: white;
+  border-radius: 3px;
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.menu li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  border-bottom: 1px solid #c948ff;
+}
+
+@media only screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #1b1b32;
+  }
+
+  .menu li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .menu li:last-child {
+    margin-bottom: 0;
+  }
+
+  .menu.active {
+    display: block;
+  }
+}
+/*end of Nav - header */
+.title{
+  text-align: center;
+}
+
+
+.description{
+  text-align: center;
+  
+}
+.description h1{
+  font-weight: 800;
+}
+.description p{
+  font-weight: lighter;
+    opacity: 0.8;
+    font-size: 20px;
+}
+
+ 
+/* Style form labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Style form input fields */
+input,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+/* Style submit button */
+
+.btnContainer{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button {
+  display: block;
+  padding: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style error message */
+#error-message {
+  color: red;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Media queries for responsive design */
+
+
+@media only screen and (max-width: 768px) {
+  /* Styles for screens that are 768px wide or less go here */
+
+  form{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+
+  .description p{
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* Style for tablets and desktop */
+  form {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  /* Style for desktop */
+  form {
+    width: 50%;
+    margin-top: 1rem;
+    
+  }
+}
+
+
+.s-icons{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 20px;
+  font-size: 30px;
+  margin-top: 35rem;
+
+}
+.s-icons span:first-child{
+  color: rgb(237, 43, 255);
+}
+.s-icons span:nth-child(2){
+  color: rgb(255, 136, 0);
+}
+.s-icons span:last-child{
+  color: rgb(99, 195, 255);
+}
